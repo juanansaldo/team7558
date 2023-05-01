@@ -1,0 +1,31 @@
+table, th, td {
+    border: 1.5px solid black;
+}
+
+.coinInfo {
+    width: 75%;
+}
+
+.coinLabels {
+    background-color: #f8f9fa;
+}
+
+.mainDiv {
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.foot {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #f8f9fa;
+}
+
+.footText {
+    text-align: center;
+}
+
+.details {
+    text-align: center;
+    width: 45%;
+}
