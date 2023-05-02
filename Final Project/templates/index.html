@@ -40,9 +40,9 @@
                         <a class="nav-link disabled" href="#">Disabled</a>
                     </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" id="search" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" id="btn" type="submit">Search</button>
+                <form class="form-inline my-2 my-lg-0" onsubmit="submitForm(event)">
+                    <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </nav>
@@ -50,7 +50,6 @@
         <div class="mainDiv">
             <div class="text-center">
                 <h1>Explore The Cryptocurrency Market</h1>
-                <h5>The market is [up/down] [number]% in the last day.</h5>
             </div>
             
             <div class = "row justify-content-center text-center">

@@ -1,9 +1,8 @@
-var button = document.getElementById('btn');
-var search = document.getElementById('search');
+function submitForm(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
 
-searchForm.addEventListener("submit", function(event) {
-    event.preventDefault();
-    var keyword = searchInput.value;
-    localStorage.setItem("keyword", keyword);
-    window.location.href = "detail.html";
-});
+    const searchQuery = document.getElementById('searchInput').value;
+    const url = '/detail/' + searchQuery
+
+    window.location.href = url;
+}

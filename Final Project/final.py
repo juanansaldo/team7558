@@ -28,9 +28,11 @@ def index():
 
     try:
         r = requests.get(endpoint, params=payload)
+
         if r.ok:
             data = r.json()
             pprint(data)
+
             for item in data:
                 id_list.append(item['id'])
                 rank_list.append(item['market_cap_rank'])
@@ -47,6 +49,7 @@ def index():
             price_list = [format(round(num, 2), ',.2f') for num in price_list]
             dayVolume_list = [format(num, ',') for num in dayVolume_list]
             dayChange_list = [format(round(num, 2), ',.2f') for num in dayChange_list]
+
     except Exception as e:
         print(e)
 
