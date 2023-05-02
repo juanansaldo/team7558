@@ -3,7 +3,7 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap4
 from pprint import pprint
 import requests
-
+import matplotlib.pyplot as plt
 app = Flask(__name__)
 bootstrap = Bootstrap4(app)
 
@@ -75,4 +75,31 @@ def detail(id):
 
     return render_template('detail.html', id=id, description=description)
 
+@app.route('/chart/<id>')
+def chart(id):
+    endpoint = f'https://api.coingecko.com/api/v3/coins/{id}/market_chart?'
+    payload = {
+        'vs_currency': 'usd',
+        'days': '1,14,30,max',
+        'interval': 'daily'
+    }
+
+    try:
+        r = requests.get(endpoint, params=payload)
+        if r.ok:
+            data = r.json()
+
+            prices = data['prices']
+            timestamps = [price[0] for price in prices]
+            values = [price[1] for price in prices]
+
+            plt.plot(timestamps, values)
+            plt.xlabel('Timestamp')
+            plt.ylabel('Price (USD)')
+            plt.title('Price Chart')
+
+            plt.show()
+
+    except Exception as e:
+        print(e)
 app.run(debug=True)
