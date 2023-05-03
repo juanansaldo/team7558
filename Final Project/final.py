@@ -53,7 +53,7 @@ def index():
     except Exception as e:
         print(e)
 
-    return render_template('index.html', data = zip(id_list, rank_list, name_list, price_list, logo_list, symbol_list, dayChange_list, dayVolume_list, marketcap_list))
+    return render_template('index.html', data=zip(id_list, rank_list, name_list, price_list, logo_list, symbol_list, dayChange_list, dayVolume_list, marketcap_list))
 
 @app.route('/detail/<id>')
 def detail(id):
@@ -68,14 +68,36 @@ def detail(id):
 
     try:
         r = requests.get(endpoint, params=payload)
+
+        description = None
+        logo = None
+        rank = None
+        name = None
+        price = None
+        symbol = None
+        dayChange = None
+        dayVolume = None
+        marketcap = None
+
         if r.ok:
             data = r.json()
             pprint(data)
+
             description = data['description']['en']
             description = description.replace('<a ', '<a target="_blank" ')
+            logo = data['image']['large']
+            rank = data['market_cap_rank']
+            name = data['name']
+            price = data['market_data']['current_price']['usd']
+            symbol = data['symbol'].upper()
+            dayChange = data['market_data']['price_change_percentage_24h']
+            dayVolume = data['market_data']['total_volume']['usd']
+            marketcap = data['market_data']['market_cap']['usd']
+
+
     except Exception as e:
         print(e)
 
-    return render_template('detail.html', id=id, description=description)
+    return render_template('detail.html', id=id, rank=rank, name=name, price=price, symbol=symbol, dayChange=dayChange, dayVolume=dayVolume, marketcap=marketcap, description=description, logo=logo)
 
 app.run(debug=True)

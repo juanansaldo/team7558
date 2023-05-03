@@ -1,5 +1,21 @@
-table, th, td {
-    border: 1.5px solid black;
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+  
+th {
+    background-color: #f2f2f2;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+  
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+  
+td {
+    padding: 8px;
+    border: 1px solid #ddd;
 }
 
 .coinInfo {
@@ -15,6 +31,12 @@ table, th, td {
     margin-bottom: 50px;
 }
 
+.div1 {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
 .foot {
     display: flex;
     justify-content: space-evenly;
@@ -26,11 +48,20 @@ table, th, td {
 }
 
 .details {
-    text-align: center;
+    text-align: left;
     width: 45%;
+}
+
+.btn {
+    outline: 1px solid #ddd;
 }
 
 #pic1 {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+#info {
+    text-align: left;
+    text-indent: 2.5em;
 }

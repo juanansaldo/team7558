@@ -41,16 +41,23 @@
                 </ul>
                 <form class="form-inline my-2 my-lg-0" onsubmit="submitForm(event)">
                     <input id="searchInput" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </div>
         </nav>
 
-          
-        <div class = "text-center details">
-            <h1>Details page for Final Project</h1>
-            <h6>{{ description | safe}}</h6>
+        <div class="div1">
+            <div>
+                <img height="450px" width="450px" src="{{logo}}"/>
+            </div>
+            <div class = "text-center details">
+                <h1>{{ name }}</h1>
+                <h5>Popularity: #{{ rank }}</h5>
+                <h6 id="info">{{ description | safe}}</h6>
+            </div>
         </div>
+
+        {{ price, symbol, dayChange, dayVolume, marketcap }} 
 
         <footer>
             <div class="foot">
