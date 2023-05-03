@@ -9,6 +9,7 @@
 
         {{ bootstrap.load_css() }}
     </head>
+
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -47,17 +48,35 @@
         </nav>
 
         <div class="div1">
-            <div>
-                <img height="450px" width="450px" src="{{logo}}"/>
+            <div class="x1">
+                <img height="100px" width="100px" src="{{ data['image']['large'] }}"/>
+                <h1>{{ data['name'] }} ({{ data['symbol'].upper() }})</h1>
+                <h5>Popularity: #{{ data['market_cap_rank'] }}</h5>
+                <h6 id="info">{{ data['description']['en'] | safe}}</h6>
+                    
             </div>
-            <div class = "text-center details">
-                <h1>{{ name }}</h1>
-                <h5>Popularity: #{{ rank }}</h5>
-                <h6 id="info">{{ description | safe}}</h6>
+            <div class="details">
+                <div>
+                    <div class="x">
+                        Price <br>
+                        {{ price }}
+                    </div>
+                    <div class="x">
+                        Change <br>
+                    </div>
+                </div>
+                <div>
+                    <div class="x">
+                        Volume <br>
+                        ${{ dayVolume }}
+                    </div>
+                    <div class="x">
+                        Market cap <br>
+                        ${{ marketcap }}
+                    </div>
+                </div>
             </div>
         </div>
-
-        {{ price, symbol, dayChange, dayVolume, marketcap }} 
 
         <footer>
             <div class="foot">

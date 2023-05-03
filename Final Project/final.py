@@ -3,6 +3,7 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap4
 from pprint import pprint
 import requests
+import humanize
 
 app = Flask(__name__)
 bootstrap = Bootstrap4(app)
@@ -57,10 +58,13 @@ def index():
 
 @app.route('/detail/<id>')
 def detail(id):
+    def format_number(number):
+        return humanize.intword(number, format='%.1f')
+
     endpoint = f'https://api.coingecko.com/api/v3/coins/{id}?'
     payload = {
         'tickers': 'false',
-        'market_data': 'false',
+        'market_data': 'true',
         'community_data': 'false',
         'developer_data': 'false',
         'sparkline': 'false'
@@ -69,35 +73,24 @@ def detail(id):
     try:
         r = requests.get(endpoint, params=payload)
 
-        description = None
-        logo = None
-        rank = None
-        name = None
-        price = None
-        symbol = None
-        dayChange = None
-        dayVolume = None
-        marketcap = None
-
         if r.ok:
             data = r.json()
             pprint(data)
 
-            description = data['description']['en']
-            description = description.replace('<a ', '<a target="_blank" ')
-            logo = data['image']['large']
-            rank = data['market_cap_rank']
-            name = data['name']
             price = data['market_data']['current_price']['usd']
-            symbol = data['symbol'].upper()
             dayChange = data['market_data']['price_change_percentage_24h']
             dayVolume = data['market_data']['total_volume']['usd']
             marketcap = data['market_data']['market_cap']['usd']
+
+            price = "${:,.2f}".format(price)
+            marketcap = format_number(marketcap)
+            dayVolume = format_number(dayVolume)
+
 
 
     except Exception as e:
         print(e)
 
-    return render_template('detail.html', id=id, rank=rank, name=name, price=price, symbol=symbol, dayChange=dayChange, dayVolume=dayVolume, marketcap=marketcap, description=description, logo=logo)
+    return render_template('detail.html', price=price, dayVolume=dayVolume, marketcap=marketcap, data=data)
 
 app.run(debug=True)

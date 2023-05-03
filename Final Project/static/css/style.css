@@ -48,12 +48,36 @@ td {
 }
 
 .details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details > div {
+    width: 50%;
     text-align: left;
-    width: 45%;
+    flex-basis: 50%;
+    height: 20%;
 }
 
 .btn {
     outline: 1px solid #ddd;
+}
+
+.s1 {
+    display: flex;
+}
+
+.x1 {
+    text-align: center;
+    width: 45%;
+}
+
+.x {
+    height: 100%;
+    outline: 1px solid #ddd;
+    padding-left: 3px;
+    width: 200px;
 }
 
 #pic1 {
