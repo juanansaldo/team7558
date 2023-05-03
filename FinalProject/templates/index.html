@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Index</title>
+        <style></style>
+
+        {{ bootstrap.load_css() }}
+    </head>
+    
+    <body id = "index">
+        {% extends "nav.html" %}
+{% block content %}
+        <div class="home">
+        
+
+            <div class="mainDiv">
+                <div class="text-center">
+                    <h2><b>EXPLORE THE CRYPTOECONOMY</b></h2>
+                </div>
+                
+                <div class = "row justify-content-center text-center">
+                    <table class="coinInfo">
+                        <thead class="coinLabels">
+                            <tr>
+                                <th>Rank</th>
+                                <th>Logo</th>
+                                <th>Name</th>
+                                <th>Symbol</th>
+                                <th>Price</th>
+                                <th>Change</th>
+                                <th>Volume (24Hr)</th>
+                                <th>Market cap</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for id, rank, name, price, logo, symbol, dayChange, dayVolume, marketcap in data %}
+                            <tr>
+                                <td>
+                                    <h6>{{rank}}</h6>
+                                </td>
+                                <td>
+                                    <img height="20px" width="20px" src="{{logo}}"/>
+                                </td>
+                                <td>
+                                    <a href="{{ url_for('detail', id=id, chart_path=chart_path) }}">
+                                        <h6>{{name}}</h6>
+                                    </a>
+                                </td>
+                                <td>
+                                    <h6>{{symbol}}</h6>
+                                </td>
+                                <td>
+                                    <h6>${{price}}</h6>
+                                </td>
+                                <td>
+                                    <h6>{{dayChange}}%</63>
+                                </td>
+                                <td>
+                                    <h6>${{dayVolume}}</h6>
+                                </td>
+                                <td>
+                                    <h6>${{marketcap}}</h6>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+            
+            <footer>
+                <div class="foot">
+                    <div>
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/13/CSU_Monterey_Bay_seal.svg/1200px-CSU_Monterey_Bay_seal.svg.png" id="pic1" width="300px">
+                    </div>
+                    <div class="footText">
+                        <br><br><br><br>
+                        Alire, Ansaldo, Greer, Ramirez <br>
+                        CST 205 Multimedia Design & Programming. <b>2023©</b> <br>
+                        <b>Disclaimer:</b> The information on this webpage is for academic purposes.
+                    </div>
+                </div>
+            </footer>
+           
+    
+            {{ bootstrap.load_js() }}
+    
+            <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+            {% endblock %}
+        </body>
+    </html>

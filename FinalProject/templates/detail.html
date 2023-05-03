@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Detail</title>
+        <style></style>
+
+        {{ bootstrap.load_css() }}
+    </head>
+
+    <body id ="detail">
+        
+    
+        {% extends "nav.html" %}
+        {% block content %}
+           <div class="about">
+            <div class="div1">
+                <div class="x1">
+                    <img height="100px" width="100px" src="{{ data['image']['large'] }}"/>
+                    <h1>{{ data['name'] }} ({{ data['symbol'].upper() }})</h1>
+                    <h5>Popularity: #{{ data['market_cap_rank'] }}</h5>
+                    <h6 id="info">{{ data['description']['en'] | safe}}</h6>
+                        
+                </div>
+                <div class="details">
+                    <div>
+                        <div class="x">
+                            Price <br>
+                            {{ price }}
+                        </div>
+                        <div class="x">
+                            Change <br>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="x">
+                            Volume <br>
+                            ${{ dayVolume }}
+                        </div>
+                        <div class="x">
+                            Market cap <br>
+                            ${{ marketcap }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        
+        <footer>
+            <div class="foot">
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/13/CSU_Monterey_Bay_seal.svg/1200px-CSU_Monterey_Bay_seal.svg.png" id="pic1" width="300px">
+                </div>
+                <div class="footText">
+                    <br><br><br><br>
+                    <br><br><br><br>
+                    Alire, Ansaldo, Greer, Ramirez <br>
+                    CST 205 Multimedia Design & Programming. <b>2023©</b> <br>
+                    <b>Disclaimer:</b> The information on this webpage is for academic purposes.
+                </div>
+            </div>
+        </footer>
+        
+        {{ bootstrap.load_js() }}
+
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+        {% endblock %}
+    </body>
+</html>
