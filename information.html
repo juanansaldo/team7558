@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Information Page</title>
+    <style></style>
+
+    {{ bootstrap.load_css() }}
+</head>
+<body>
+    {% extends "nav.html" %}
+{% block content %}
+        <div class="information">
+    <div id = "infoTitle" class = "text-center">
+    <h1><b>What is crypto currency?</b></h1>
+    </div>
+    </div>
+    <br><br>
+    
+    <div id = infoBody>
+        Cryptocurrency, sometimes called crypto-currency or crypto, is any form of
+currency that exists digitally or virtually and uses cryptography to secure 
+transactions. Cryptocurrencies don't have a central issuing or regulating
+ authority, instead using a decentralized system to record transactions and
+ issue new units.
+    </div>
+    <br><br>
+
+    
+    <div id = "facts"> 
+        <h3>Facts about crytocurrencies..</h3>
+    </div>
+    <div id = "allFacts">
+    <ul>
+        <li> There are over 18,000 different crytocurrencies</li>
+        <li>Dogecoin was started as a joke</li>
+        <li>The creators of cryptocurrencies seem to still be unknown on who it actually is</li>
+    </ul>
+
+    <div id = "link">
+        <h5> For more interesting facts follow this link!</h5>
+        <a href = "https://guardian.ng/technology/10-facts-about-cryptocurrency-you-should-know/">Click Here!</a>
+    </div>
+</div>
+
+    <br><br><br><br>
+    
+    <footer>
+        <div class="foot">
+            <div>
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/13/CSU_Monterey_Bay_seal.svg/1200px-CSU_Monterey_Bay_seal.svg.png" id="pic1" width="300px">
+            </div>
+            <div class="footText">
+                <br><br><br><br>
+                Alire, Ansaldo, Greer, Ramirez <br>
+                CST 205 Multimedia Design & Programming. <b>2023©</b> <br>
+                <b>Disclaimer:</b> The information on this webpage is for academic purposes.
+            </div>
+        </div>
+    </footer>
+            
+            {{ bootstrap.load_js() }}
+    
+            <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+            {% endblock %}
+        </body>
+    </html>
