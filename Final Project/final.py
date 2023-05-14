@@ -81,16 +81,30 @@ def detail(id):
             dayChange = data['market_data']['price_change_percentage_24h']
             dayVolume = data['market_data']['total_volume']['usd']
             marketcap = data['market_data']['market_cap']['usd']
+            circSupply = data['market_data']['circulating_supply']
+            totalSupply = data['market_data']['total_supply']
+            weekChange = data['market_data']['price_change_percentage_7d']
+            yearChange = data['market_data']['price_change_percentage_1y']
+            totalSupply = data['market_data']['total_supply']
+            low = data['market_data']['low_24h']['usd']
+            high = data['market_data']['high_24h']['usd']
 
             price = "${:,.2f}".format(price)
-            marketcap = format_number(marketcap)
+            dayChange = round(dayChange, 2)
             dayVolume = format_number(dayVolume)
-
-
+            marketcap = format_number(marketcap)
+            circSupply = round(circSupply)
+            totalSupply = round(totalSupply)
+            circSupply = format(circSupply, ',')
+            totalSupply = format(totalSupply, ',')
+            weekChange = round(weekChange, 2)
+            yearChange = round(yearChange, 2)
+            low = "${:,.2f}".format(low)
+            high = "${:,.2f}".format(high)
 
     except Exception as e:
         print(e)
 
-    return render_template('detail.html', price=price, dayVolume=dayVolume, marketcap=marketcap, data=data)
+    return render_template('detail.html', low=low, high=high, weekChange=weekChange, yearChange=yearChange, circSupply=circSupply, totalSupply=totalSupply, price=price, dayChange=dayChange, dayVolume=dayVolume, marketcap=marketcap, data=data)
 
 app.run(debug=True)
