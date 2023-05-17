@@ -12,11 +12,11 @@
     <body>
         {% include "partials/header.html" %}
 
-        <h1 id="title"><b>What is cryptocurrency?</b></h1>
+        <h2 id="title"><b>WHAT IS CRYPTOCURRENCY?</b></h2>
         
         <div class="div1">
             <div class="x2">
-                <h3>Basic information</h3>
+                <h5 id="title"><b>BASIC INFORMATION</b></h5>
                 <p>Cryptocurrency, sometimes called crypto, is any form of currency that exists digitally
                 or virtually and uses cryptography to secure transactions. Cryptocurrencies don't have
                 a central issuing or regulating authority, instead using a decentralized system to
@@ -24,7 +24,7 @@
             </div>
 
             <div class="x2">
-                <h3>Facts about cryptocurrencies</h3>
+                <h5 id="title"><b>FACTS ABOUT CRYPTOCURRENCIES</b></h5>
             
                 <ul>
                     <li> There are over 18,000 different crytocurrencies.</li>
@@ -32,23 +32,11 @@
                     <li> The real identities of some of the creators of cryptocurrencies still seem to be unknown.</li>
                 </ul>
                 
-                <h5> For more interesting facts, read this article from <a href = "https://guardian.ng/technology/10-facts-about-cryptocurrency-you-should-know/">The Guardian</a>. </h5>
+                <h6> For more interesting facts, read this article from <a href = "https://guardian.ng/technology/10-facts-about-cryptocurrency-you-should-know/">The Guardian</a>. </h6>
             </div>
         </div>
        
-        <footer>
-            <div class="foot">
-                <div>
-                    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/13/CSU_Monterey_Bay_seal.svg/1200px-CSU_Monterey_Bay_seal.svg.png" id="pic1" width="300px">
-                </div>
-                <div class="footText">
-                    <br><br><br><br>
-                    Alire, Ansaldo, Greer, Ramirez <br>
-                    CST 205 Multimedia Design & Programming. <b>2023©</b> <br>
-                    <b>Disclaimer:</b> The information on this webpage is for academic purposes.
-                </div>
-            </div>
-        </footer>
+        {% include "partials/footer.html" %}
                 
         {{ bootstrap.load_js() }}
         
