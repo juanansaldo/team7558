@@ -4,7 +4,8 @@ from flask_bootstrap import Bootstrap4
 from pprint import pprint
 import requests
 import humanize
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
+import plotly.graph_objects as go
 
 app = Flask(__name__)
 bootstrap = Bootstrap4(app)
@@ -113,10 +114,17 @@ def chart(id):
             timestamps = [price[0] for price in prices]
             values = [price[1] for price in prices]
 
-            plt.plot(timestamps, values)
-            plt.xlabel('Timestamp')
-            plt.ylabel('Price (USD)')
-            plt.title('Price Chart')
+            fig = go.Figure(data=go.Scatter(x=timestamps, y=values))
+            fig.update_layout(
+            xaxis_title='Timestamp',
+            yaxis_title='Price (USD)',
+            title='Price Chart'
+            )
+            fig.show()
+            # plt.plot(timestamps, values)
+            # plt.xlabel('Timestamp')
+            # plt.ylabel('Price (USD)')
+            # plt.title('Price Chart')
 
             # plt.show()
 
