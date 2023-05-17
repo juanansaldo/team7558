@@ -4,6 +4,13 @@ from flask_bootstrap import Bootstrap4
 from pprint import pprint
 import requests
 import humanize
+import matplotlib.pyplot as plt
+import base64
+import io
+from io import BytesIO
+from flask import url_for
+import os
+import urllib
 
 app = Flask(__name__)
 bootstrap = Bootstrap4(app)
@@ -106,5 +113,45 @@ def detail(id):
         print(e)
 
     return render_template('detail.html', low=low, high=high, weekChange=weekChange, yearChange=yearChange, circSupply=circSupply, totalSupply=totalSupply, price=price, dayChange=dayChange, dayVolume=dayVolume, marketcap=marketcap, data=data)
+
+@app.route('/chart/<id>')
+def chart(id):
+    endpoint = f'https://api.coingecko.com/api/v3/coins/{id}/market_chart?'
+    payload = {
+        'vs_currency': 'usd',
+        'days': '1,14,30,max',
+        'interval': 'daily'
+    }
+
+    try:
+        r = requests.get(endpoint, params=payload)
+        if r.ok:
+            data = r.json()
+
+            prices = data['prices']
+            timestamps = [price[0] for price in prices]
+            values = [price[1] for price in prices]
+
+            fig = go.Figure(data=go.Scatter(x=timestamps, y=values))
+            fig.update_layout(
+            xaxis_title='Timestamp',
+            yaxis_title='Price (USD)',
+            title='Price Chart'
+            )
+            fig.show()
+            # plt.plot(timestamps, values)
+            # plt.xlabel('Timestamp')
+            # plt.ylabel('Price (USD)')
+            # plt.title('Price Chart')
+
+            # plt.show()
+
+    except Exception as e:
+        print(e)
+    return render_template('chart.html', id=id ,timestamps=timestamps, values=values)
+
+@app.route('/information')
+def information():
+    return render_template('information.html')
 
 app.run(debug=True)

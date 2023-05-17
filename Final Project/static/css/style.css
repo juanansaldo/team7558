@@ -72,6 +72,10 @@ td {
     width: 45%;
 }
 
+.x2 {
+    width: 35%;
+}
+
 .x {
     height: 100%;
     outline: 1px solid #ddd;
@@ -87,4 +91,8 @@ td {
 #info {
     text-align: left;
     text-indent: 2.5em;
+}
+
+#title {
+    text-align: center;
 }
